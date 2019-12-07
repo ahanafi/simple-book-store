@@ -1,0 +1,61 @@
+#accordionSidebar::after{
+	content: '';
+	z-index: -1;
+	width: 14rem;
+	height: 100vh;
+	display: block;
+	position: absolute;
+	background-image: url('../img/bg-sidebar.jpg') !important;
+	opacity: 0.25;
+	filter:alpha(opacity=25);
+	top: 0;
+	left: 0;
+}
+
+#accordionSidebar{
+	background: #8E2DE2 !important;
+	background: -webkit-linear-gradient(to top, #4A00E0, #8E2DE2) !important;
+	background: -o-linear-gradient(to top, #4A00E0, #8E2DE2) !important;
+	background: -moz-linear-gradient(to top, #4A00E0, #8E2DE2) !important;
+	background: linear-gradient(to top, #4A00E0, #8E2DE2) !important;
+}
+
+.btn-primary,.swal2-confirm{
+	background: #8E2DE2 !important;
+	background: -webkit-linear-gradient(to left, #4A00E0, #8E2DE2) !important;
+	background: -o-linear-gradient(to left, #4A00E0, #8E2DE2) !important;
+	background: -moz-linear-gradient(to left, #4A00E0, #8E2DE2) !important;
+	background: linear-gradient(to left, #4A00E0, #8E2DE2) !important;
+
+}
+
+.btn-success{
+	background: #00b09b !important;
+	background: -webkit-linear-gradient(to left, #96c93d, #00b09b) !important;
+	background: -o-linear-gradient(to left, #96c93d, #00b09b) !important;
+	background: -moz-linear-gradient(to left, #96c93d, #00b09b) !important;
+	background: linear-gradient(to left, #96c93d, #00b09b) !important;
+}
+
+.btn-secondary{
+	background: #0F2027 !important;
+	background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027) !important;
+	background: -o-linear-gradient(to left, #2C5364, #203A43, #0F2027) !important;
+	background: -moz-linear-gradient(to left, #2C5364, #203A43, #0F2027) !important;
+	background: linear-gradient(to left, #2C5364, #203A43, #0F2027) !important;
+}
+
+.btn-danger, .swal2-cancel{
+	background: #FF416C !important;
+	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C) !important;
+	background: -o-linear-gradient(to right, #FF4B2B, #FF416C) !important;
+	background: -moz-linear-gradient(to right, #FF4B2B, #FF416C) !important;
+	background: linear-gradient(to right, #FF4B2B, #FF416C) !important;
+
+}
+
+#author{
+	background-image: url('../img/wave.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}

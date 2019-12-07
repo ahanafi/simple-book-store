@@ -1,0 +1,27 @@
+RewriteEngine On
+Options -Indexes
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^dashboard$ index.php
+RewriteRule ^book$ index.php?page=book
+RewriteRule ^book/create$ index.php?page=book&action=create
+RewriteRule ^book/edit/(.*)$ index.php?page=book&action=edit&uid=$1
+RewriteRule ^book/delete/(.*)$ index.php?page=book&action=delete&uid=$1
+RewriteRule ^book/(.*)$ index.php?page=book&action=show&uid=$1
+
+RewriteRule ^category$ index.php?page=category
+RewriteRule ^category/update/(.*)$ index.php?page=category&action=update&uid=$1
+RewriteRule ^category/delete/(.*)$ index.php?page=category&action=delete&uid=$1
+RewriteRule ^error$ 404.php
+#ErrorDocument 404 http://localhost/book-store/error
+
+RewriteRule ^user-management$ index.php?page=user
+RewriteRule ^user-management/create$ index.php?page=user&action=create
+RewriteRule ^user-management/edit/(.*)$ index.php?page=user&action=edit&uid=$1
+RewriteRule ^user-management/delete/(.*)$ index.php?page=user&action=delete&uid=$1
+RewriteRule ^user-management/(.*)$ index.php?page=user&action=show&uid=$1
+
+RewriteRule ^sign-in$ login.php [L]
+RewriteRule ^sign-out$ logout.php [L]
+RewriteRule ^who-am-i$ author.php [L]
