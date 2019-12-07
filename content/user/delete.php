@@ -3,18 +3,18 @@ $action = getFrom('action');
 $uid = getFrom('uid');
 
 if (isset($_POST['delete'], $_POST['_uid']) && $uid == $_POST['_uid']) {
-	$book = select("*", "book", "uid = '$uid'");
-	if(cekRow($book) > 0) {
-		$book = result($book);
-		$delete = delete('book', $book->id);
+	$user = select("*", "users", "uid = '$uid'");
+	if(cekRow($user) > 0) {
+		$user = result($user);
+		$delete = delete('users', $user->id);
 
 		if($delete) {
-			setMessage('success', "The book was successfully deleted!", "book");
+			setMessage('success', "The user was successfully deleted!", "user-management");
 		} else {
-			setMessage('error', "Error while delete the book!", "book");
+			setMessage('error', "Error while delete the user!", "user-management");
 		}
 	} else {
-		setMessage('error', "The book not found!", "book");
+		setMessage('error', "The user not found!", "user-management");
 	}
 } else {
 	redirect(base_url('error'));

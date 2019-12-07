@@ -193,7 +193,7 @@ $sql_category = select("uid, name", "category");
         </script>
     <?php setMessage('', '', ''); ?>
     <?php endif; ?>
-    <?php if (($page == "category" || $page == "book") && $action == ""): ?>
+    <?php if (($page == "category" || $page == "book" || $page == "user") && $action == ""): ?>
         <script type="text/javascript">
             var confirmDelete = (uid) => {
                 if(uid != '' && uid.length != 0) {
@@ -207,7 +207,11 @@ $sql_category = select("uid, name", "category");
                         confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                         if (result.value) {
-                            var actionURL = "<?= base_url($page.'/delete') ?>/" + uid;
+                            <?php if($page == "user"): ?>
+                                var actionURL = "<?= base_url('user-management/delete') ?>/" + uid;
+                            <?php else: ?>
+                                var actionURL = "<?= base_url($page.'/delete') ?>/" + uid;
+                            <?php endif; ?>
                             $("#delete-form").attr('action', actionURL);
                             $("#delete-form input[name=_uid]").val(uid);
                             $("#delete-form").submit();

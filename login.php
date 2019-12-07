@@ -9,8 +9,38 @@ if(cekSessionUser()) {
     redirect(base_url('dashboard'));
 }
 
-$page = getFrom('page');
-$action = getFrom('action');
+if (isset($_POST['login'])) {
+    $username = getPost('username');
+    $password = getPost('password');
+
+    if(!empty(trim($username)) && !empty(trim($password))) {
+        
+        //Cek nis
+        $sql_check_uname = select("*", "users", "username = '$username'");
+        $check_uname = cekRow($sql_check_uname);
+
+        //If nis is exist in table
+        if($check_uname > 0) {
+            $user = result($sql_check_uname);
+
+            //Validate password
+            if(password_verify($password, $user->password)) {
+
+                //Set Session
+                setSessionUser($user);
+
+                //Redirect to Dashboard Page
+                redirect(base_url("dashboard"));
+            } else {
+                setMessage('error', 'Username or password is invalid!', 'back');
+            }            
+        } else {
+            setMessage('error', 'Username or password is invalid!', 'back');
+        }
+    } else {
+        setMessage('error', 'Please insert usrname and password!', 'back');
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -119,51 +149,9 @@ body{
                 text: '<?= getMessage('text') ?>',
                 icon: '<?= getMessage('type'); ?>',
                 timer: 2000,
-            }).then(() => {
-                <?php if(getMessage('path_redirect') == 'back'): ?>
-                    window.history.back();
-                <?php else: ?>
-                    window.location='<?= base_url(getMessage('path_redirect')); ?>';
-                <?php endif; ?>
             });
         </script>
     <?php endif; ?>
     <?php setMessage('', '', ''); ?>
 </body>
 </html>
-
-<?php
-
-if (isset($_POST['login'])) {
-    $username = getPost('username');
-    $password = getPost('password');
-
-    if(!empty(trim($username)) && !empty(trim($password))) {
-        
-        //Cek nis
-        $sql_check_uname = select("*", "users", "username = '$username'");
-        $check_uname = cekRow($sql_check_uname);
-
-        //If nis is exist in table
-        if($check_uname > 0) {
-            $user = result($sql_check_uname);
-
-            //Validate password
-            if(password_verify($password, $user->password)) {
-
-                //Set Session
-                setSessionUser($user);
-
-                //Redirect to Dashboard Page
-                redirect(base_url("dashboard"));
-            } else {
-                setMessage('error', 'Username or password is invalid!', 'back');
-            }            
-        } else {
-            setMessage('error', 'Username or password is invalid!', 'back');
-        }
-    } else {
-        setMessage('error', 'Please insert usrname and password!', 'back');
-    }
-}
-?>
